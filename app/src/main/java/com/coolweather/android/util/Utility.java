@@ -107,7 +107,6 @@ public class Utility {
                 JSONArray images = boot.getJSONArray("images");
                 JSONObject jsonObject = images.getJSONObject(0);
                 String url = jsonObject.getString("url");
-                Log.d("TAG1", "handleBingPicResponse: " + url);
                 return ("https://cn.bing.com" + url);
             } catch (JSONException e) {
                 e.printStackTrace();

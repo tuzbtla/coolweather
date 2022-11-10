@@ -2,8 +2,8 @@ package com.coolweather.android;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -19,8 +19,6 @@ import com.coolweather.android.gson.Forecast;
 import com.coolweather.android.gson.Weather;
 import com.coolweather.android.util.HttpUtil;
 import com.coolweather.android.util.Utility;
-
-import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.util.Random;
@@ -75,9 +73,9 @@ public class WeatherActivity extends AppCompatActivity {
      */
     private void loadBingPic() {
         Random random = new Random();
-        int index = random.nextInt(9);
+        int index = random.nextInt(8);
         while (index == last) {
-            index = random.nextInt(9);
+            index = random.nextInt(8);
         }
         last = index;
         String requestBingPic = "http://www.bing.com/HPImageArchive.aspx?format=js&idx=" + index + "&n=1";
@@ -164,5 +162,7 @@ public class WeatherActivity extends AppCompatActivity {
         binding.suggestion.carWashText.setText(carWash);
         binding.suggestion.sportText.setText(sport);
         binding.weatherLayout.setVisibility(View.VISIBLE);
+        Intent intent = new Intent(this, AutoUpdateReceiver.class);
+        sendBroadcast(intent);
     }
 }
